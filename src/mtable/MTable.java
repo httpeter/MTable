@@ -5,6 +5,8 @@
  */
 package mtable;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -33,11 +35,16 @@ public class MTable
         {
             System.out.println("Enter table size");
             int tableSize = Integer.parseInt(new Scanner(System.in).next());
-            System.out.println("You entered: "
+            System.out.println("\nYou entered: "
                     + tableSize
-                    + ", generating table...\n\n");
+                    + ", generating table...\n");
 
-            System.out.println(this.getTable(tableSize));
+            try (FileWriter fw = new FileWriter(new File("table.csv")))
+            {
+                fw.write(this.getTable(tableSize));
+            }
+            
+            System.out.println("Done, table can be found in 'table.csv'.");
 
         } catch (Exception e)
         {
