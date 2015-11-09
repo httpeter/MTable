@@ -43,7 +43,6 @@ public class MTable
             {
                 fw.write(this.getTable(tableSize));
             }
-            
             System.out.println("Done, table can be found in 'table.csv'.");
 
         } catch (Exception e)
@@ -59,27 +58,23 @@ public class MTable
 
         StringBuilder table = new StringBuilder();
 
-        List<Integer> list = new ArrayList();
+        int x = 1;
+        int y = 1;
 
-        for (int i = 1; i <= tableSize; i++)
+        while (y <= tableSize)
         {
-            list.add(i);
-        }
-
-        int i = 1;
-        for (Integer y : list)
-        {
-            for (Integer x : list)
+            table.append(x++ * y);
+            if (x == tableSize)
             {
-                table.append(x * i);
-                if (x < list.size())
-                {
-                    table.append(", ");
-                }
+                y++;
+                x = 1;
+                table.append("\n");
+            } else
+            {
+                table.append(", ");
             }
-            table.append("\n");
-            i++;
         }
+
         return table.toString();
     }
 
